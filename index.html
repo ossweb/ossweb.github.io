@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          console.log('Service worker registration succeeded:', registration);
+        }, function(error) {
+          console.error('Service worker registration failed:', error);
+        });
+      } else {
+        console.warn('Service workers are not supported.');
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
