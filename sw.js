@@ -1,4 +1,4 @@
-var version = '1.0';
+var version = '1.1';
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
@@ -31,6 +31,18 @@ self.addEventListener('fetch', function(event) {
           return response;
         });
       });
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if(version.indexOf(key) === -1) {
+          return caches.delete(key);
+        }
+      }));
     })
   );
 });
